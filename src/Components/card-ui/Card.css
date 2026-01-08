@@ -74,6 +74,40 @@
 body.dragging .delete-btn {
   pointer-events: none;
 }
+/* ===== MOVE BUTTONS ===== */
+.move-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.move-actions button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.move-actions button:hover {
+  background: #1e40af;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .move-actions {
+    flex-direction: column;
+  }
+
+  .move-actions button {
+    width: 100%;
+  }
+}
+
 
 /* ================= MEDIA QUERIES ================= */
 

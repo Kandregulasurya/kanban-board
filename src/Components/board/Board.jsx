@@ -2,29 +2,41 @@ import React from 'react';
 import './Board.css';
 import Card from '../card-ui/Card';
 
-export default function Board({ tasks, moveTask , deleteTask}) {
+export default function Board({ tasks, moveTask, deleteTask }) {
 
+  /* Allow drag over */
   const allowDrop = (e) => {
-    e.preventDefault()
-    e.stopPropagation();
+    e.preventDefault();
   };
 
+  /* Handle drop */
   const onDrop = (e, priority) => {
-      e.preventDefault();
-      e.stopPropagation(); 
+    e.preventDefault();
     const id = e.dataTransfer.getData('taskId');
+    if (!id) return;
     moveTask(Number(id), priority);
   };
 
-  const renderTasks = (priority) =>
-    tasks
+  /* Render tasks based on priority */
+  const renderTasks = (priority) => {
+    return tasks
       .filter(task => task.priority === priority)
-      .map(task => <Card key={task.id} task={task} deleteTask={deleteTask} />);
+      .map(task => (
+        <Card
+          key={task.id}
+          task={task}
+          deleteTask={deleteTask}
+          moveTask={moveTask}   // 🔥 for button-based movement
+        />
+      ));
+  };
 
   return (
     <div className='board'>
 
-      <div className='low' id='low-tasklist'
+      {/* ===== TO DO ===== */}
+      <div
+        className='low'
         onDragOver={allowDrop}
         onDrop={(e) => onDrop(e, 'low')}
       >
@@ -32,21 +44,29 @@ export default function Board({ tasks, moveTask , deleteTask}) {
           <h2>To-Do</h2>
           <p>{tasks.filter(t => t.priority === 'low').length}</p>
         </div>
-        <div className='taskList'>{renderTasks('low')}</div>
+        <div className='taskList'>
+          {renderTasks('low')}
+        </div>
       </div>
 
-      <div className='mediam' id='mediam-tasklist'
-        onDragOver={allowDrop}k
-        onDrop={(e) => onDrop(e, 'mediam')}
+      {/* ===== IN PROGRESS ===== */}
+      <div
+        className='medium'
+        onDragOver={allowDrop}
+        onDrop={(e) => onDrop(e, 'medium')}
       >
         <div className='head'>
           <h2>In Progress</h2>
-          <p>{tasks.filter(t => t.priority === 'mediam').length}</p>
+          <p>{tasks.filter(t => t.priority === 'medium').length}</p>
         </div>
-        <div className='taskList'>{renderTasks('mediam')}</div>
+        <div className='taskList'>
+          {renderTasks('medium')}
+        </div>
       </div>
 
-      <div className='hard' id='hard-tasklist'
+      {/* ===== COMPLETED ===== */}
+      <div
+        className='high'
         onDragOver={allowDrop}
         onDrop={(e) => onDrop(e, 'high')}
       >
@@ -54,7 +74,9 @@ export default function Board({ tasks, moveTask , deleteTask}) {
           <h2>Completed</h2>
           <p>{tasks.filter(t => t.priority === 'high').length}</p>
         </div>
-        <div className='taskList'>{renderTasks('high')}</div>
+        <div className='taskList'>
+          {renderTasks('high')}
+        </div>
       </div>
 
     </div>
