@@ -1,0 +1,13 @@
+:root{
+  --primary-color:#111827;
+  --background-color:#f5f7fa;
+  --box-shadow:rgba(0, 0, 0, 0.3);
+}
+body.dark{
+  --primary-color:#f5f7fa;
+  --background-color:#111827;
+  --box-shadow:rgba(255, 253, 253, 0.3);
+}
+body{
+  background-color: var(--background-color);
+}

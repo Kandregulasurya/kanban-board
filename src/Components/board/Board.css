@@ -1,0 +1,109 @@
+/* ===== Board Container ===== */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  background: var(--background-color);
+}
+
+/* ===== Common Column Styles ===== */
+.low,
+.mediam,
+.hard {
+  background: var(--background-color);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 10px var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Header Section ===== */
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  
+}
+
+#low-tasklist{
+    background: linear-gradient(rgba(0, 0, 255, 0.286),rgba(0, 0, 255, 0.155));
+    transform: translateZ(50px);
+}
+#mediam-tasklist{
+    background: linear-gradient(rgba(255, 255, 0, 0.286),rgba(255, 255, 0, 0.155));
+    transform: translateZ(50px);
+}
+#hard-tasklist{
+    background: linear-gradient(rgba(144, 238, 144, 0.286),rgba(0, 128, 0, 0.155));
+    transform: translateZ(50px);
+}
+.head h2 {
+  font-size: 30px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin: 10px;
+  color: var(--primary-color);
+  margin: 0 10px;
+}
+
+.head p {
+  font-size: 20px;
+  color: var(--primary-color);
+  margin: 0 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* ===== Task List ===== */
+.taskList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+
+/* ===== Priority Colors ===== */
+.low .head p {
+  background-color:#1f4f9d;
+}
+
+.mediam .head p {
+  background-color: #f39c12;
+}
+
+.hard .head p {
+  background-color: #e74c3c;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+=========================== */
+
+/* ----- Tablet View ----- */
+@media (max-width: 1024px) {
+  .board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ----- Mobile View ----- */
+@media (max-width: 600px) {
+  .board {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .head h2 {
+    font-size: 16px;
+  }
+
+  .head p {
+    font-size: 13px;
+  }
+}
